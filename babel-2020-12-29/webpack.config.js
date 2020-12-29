@@ -83,10 +83,6 @@ module.exports = (env, argv) => {
                     }
                 },
             },
-            after(app){
-                console.log('启动完成')
-                console.log(app);
-            },
           /*  proxy: [{
                 context: ["/auth", "/api"], // 代理多个特定的路径到同一个目标,
                 target: "http://localhost:3000",
