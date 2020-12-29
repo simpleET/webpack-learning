@@ -1,0 +1,1 @@
+({init(){document.getElementById("btn_login").onclick=()=>{alert("登录了")}}}).init();

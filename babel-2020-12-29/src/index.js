@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import '../scss/css.css';
+
 
 const index = {
     list: [23, 4, 'hello world', 'dog233'],
