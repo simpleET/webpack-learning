@@ -1,0 +1,11 @@
+webpack-dev-server
+--重要插件，提供如下功能
+提供了一个简单的 web 服务器，
+将 dist 目录下的文件，作为可访问文件
+自动编译entry 里面的 js，
+代码不落地，将编译后的内容写入内存中，
+自动刷新浏览器
+
+这是个重要的插件,已经将有翻译的文档都看过了，对于理解vue-cli 有非常大的帮助,demo 在github 上
+该demo主要看webpack.config.js 和package.json
+ 对应的webpack文档： https://www.webpackjs.com/configuration/dev-server/#devserver
