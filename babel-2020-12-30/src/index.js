@@ -1,11 +1,13 @@
 import _ from 'lodash';
-import '../scss/css.css';
+import '../scss/css.css'; // 修改css.css 会自动刷新浏览器，并改变样式
 import login from './login';
-console.log(module)
+
 if (module.hot) {
+    // console.log(import.meta.webpackHot) // webpack 5的写法
+    // console.log(module.hot) // webpack 4
     module.hot.accept('./login.js', function () {
-        console.log('登录js 变化了');
-        login.init();
+        console.log('依赖login.js 变化了');
+        // login.init();
     });
 }
 const index = {
@@ -17,14 +19,11 @@ const index = {
     },
     init() {
         const _this = this;
-
+        login();
+        document.body.append('<p>333</p>')
         _this.changeList();
-        _this.login();
     },
-    login() {
-        const _this = this;
 
-    },
     // changeList: function() {
     changeList() {
         const _this = this;
@@ -36,9 +35,9 @@ const index = {
         });
 
         console.log('end', arr);
-        console.log('是否包含23:', _this.list.includes(23));
+        // console.log('是否包含23:', _this.list.includes(23));
         let data = _.assign(_this.data, {gender: '男'});
-        console.log(data);
+        // console.log(data);
     },
 };
 index.init();
