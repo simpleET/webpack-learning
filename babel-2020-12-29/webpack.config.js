@@ -66,7 +66,7 @@ module.exports = (env, argv) => {
             * 设置前：http://localhost:9000/login.js
             * 设置后：http://localhost:9000/dist/login.js
             * */
-            // publicPath:'/dist/', // 设置访问路径,此路径下已被打包了的文件可在浏览器中访问,
+            // publicPath:'/dist/', // 设置访问路径,此路径下已被打包了的文件可在浏览器中访问, http://localhost:9000/dist/index.html
             port: 9000,
             // open: true, //  启动时，在浏览器打开
             index: 'index.html', // 索引文件的文件名
