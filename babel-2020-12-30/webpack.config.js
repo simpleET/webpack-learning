@@ -1,36 +1,18 @@
 const path = require('path');
-const glob = require('glob');
+const webpack = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-let entries = getEntry('./src/*.js');
-
-function getEntry(globPath) {
-    let files = glob.sync(globPath);
-    let entries = {},
-        entry, dirname, basename, pathname, extname;
-
-    for (let i = 0; i < files.length; i++) {
-        entry = files[i];
-        dirname = path.dirname(entry);
-        extname = path.extname(entry);
-        basename = path.basename(entry, extname);
-        pathname = path.join(dirname, basename);
-        // console.log(dirname, extname, basename, pathname)
-        entries[basename] = './' + entry;
-    }
-    return entries;
-}
-
 
 module.exports = (env, argv) => {
 
     let config = {
-        entry: entries,
+        entry: {
+            app: './src/index.js',
+        },
         output: {
             filename: '[name].js?t=[contenthash]',
             path: path.resolve(__dirname, 'dist'),
-            publicPath:'/',
+            publicPath: '/',
         },
         module: {
             rules: [
@@ -46,9 +28,16 @@ module.exports = (env, argv) => {
         plugins: [
             new CleanWebpackPlugin(), // 清空目标文件夹,dist
             new HtmlWebpackPlugin({
-                title: 'webpack-dev-middleware'
-            })
+                title: '模块热替换',
+            }),
+            // new webpack.NamedModulesPlugin(), // webpack 5已经被移除
+            new webpack.HotModuleReplacementPlugin()
         ],
+        devServer: {
+            contentBase: './dist',
+            hot: true,
+            port:9000,
+        }
     };
     return config;
 }
