@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
 module.exports = {
     entry: {
         app: './src/index.js',
@@ -29,11 +30,14 @@ module.exports = {
             title: '模块热替换',
         }),
         // new webpack.NamedModulesPlugin(), // webpack 5已经被移除
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+       /* new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')   webpack 5 会根据 mode 判断 是 production 和development
+        }),*/
     ],
     devServer: {
         contentBase: './dist',
         hot: true,
-        port:9000,
+        port: 9000,
     }
 }

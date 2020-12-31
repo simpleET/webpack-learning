@@ -2,6 +2,8 @@ import _ from 'lodash';
 import '../scss/css.css'; // 修改css.css 会自动刷新浏览器，并改变样式
 import login from './login';
 
+
+
 if (module.hot) {
     // console.log(import.meta.webpackHot) // webpack 5的写法
     // console.log(module.hot) // webpack 4
@@ -20,8 +22,22 @@ const index = {
     init() {
         const _this = this;
         login();
+        let env = process.env.NODE_ENV;
+        console.log("当前的运行环境是： " + env)
         document.body.append('<p>333</p>')
         _this.changeList();
+
+        var btn_alert = document.createElement('button');
+        btn_alert.innerHTML = "点击我";
+        document.body.appendChild(btn_alert)
+        btn_alert.onclick = () => {
+            import(/* webpackChunkName:"click-me" */ './click-me').then(module=>{
+                console.log(module)
+                module.default();
+            })
+        }
+
+
     },
 
     // changeList: function() {

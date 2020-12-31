@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack  --mode production",
     "watch": "webpack --watch --mode development",
-    "start": "webpack serve --mode production",
+    "start": "webpack serve --mode production --config webpack.config.js",
     "start:dev": "webpack serve --mode development --progress",
     "server:dev": "node server.js --mode development",
     "server:dev:api": "node dev-server.js --mode development"
